@@ -229,6 +229,9 @@ public class HousekeepingView extends AppCompatActivity {
         RoomManagement roomManagement = myHotelApp.getRoomManagement();
         Room room = roomManagement.getRoomInformation(selectedRoomNumber, selectedFloor);
 
+        /* 選択された部屋のステータスリセット */
+        room.changeStatus("Vacant");
+
         /* 清掃開始・終了時刻のテキスト表示リセット */
         room.setCleaningStartTime(" ");
         room.setCleaningFinishTime(" ");
