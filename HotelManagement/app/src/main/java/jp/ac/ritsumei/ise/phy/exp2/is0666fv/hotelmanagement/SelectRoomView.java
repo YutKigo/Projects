@@ -14,6 +14,7 @@ public class SelectRoomView extends AppCompatActivity {
     private TextView roomNumberDisplay[] = new TextView[15];
     private ImageButton roomButton[] = new ImageButton[15];
     private int selectedFloor;
+    private MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +66,9 @@ public class SelectRoomView extends AppCompatActivity {
         roomButton[13] = findViewById(R.id.roomButton14);
         roomButton[14] = findViewById(R.id.roomButton15);
 
-        /* 各部屋のボタンにRoomStatusを画像表示 */
-        for(int i = 0; i < roomButton.length; i++){
-            //roomButton[i].setImageResource(R.drawble.ファイル名);
-        }
+
+
+
     }
 
     //onResume method:ページが開かれた時に必ず呼び出され, 視覚的効果の更新などを行う
@@ -87,28 +87,29 @@ public class SelectRoomView extends AppCompatActivity {
             Room room = roomManagement.getRoomInformation(i+1, selectedFloor);
 
             /* 部屋の状態によって表示する画像を変更 */
-            if(room.getStatus() == "Vacant"){
+            if(room.getStatus().equals("Vacant")){
                 roomButton[i].setImageResource(R.drawable.vacant);
             }
-            else if(room.getStatus() == "Cleaning In Progress"){
+            else if(room.getStatus().equals("Cleaning In Progress")){
                 roomButton[i].setImageResource(R.drawable.cleaning_in_progress);
             }
-            else if(room.getStatus() == "Customer Staying"){
+            else if(room.getStatus().equals("Customer Staying")){
                 roomButton[i].setImageResource(R.drawable.customer_staying);
             }
-            else if(room.getStatus() == "CheckedOUT"){
+            else if(room.getStatus().equals("CheckedOUT")){
                 roomButton[i].setImageResource(R.drawable.checked_out);
             }
-            else if(room.getStatus() == "Inspection Required"){
+            else if(room.getStatus().equals("Inspection Required")){
                 roomButton[i].setImageResource(R.drawable.inspection_required);
             }
-            else if(room.getStatus() == "Inspection In Progress"){
+            else if(room.getStatus().equals("Inspection In Progress")){
                 roomButton[i].setImageResource(R.drawable.inspection_in_progress);
             }
 
 
         }
     }
+
 
     public void roomButtonTapped(View view){
         Intent intent = new Intent(this, RoomSetupView.class);
@@ -168,6 +169,9 @@ public class SelectRoomView extends AppCompatActivity {
     }
 
     public void backButtonTapped(View view){
+        MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
+        myHotelApp.saveRoomManagement();
         finish();
+
     }
 }

@@ -21,6 +21,7 @@ public class FailureEquipmentListView extends AppCompatActivity {
 
 
 
+
     protected void onResume() {
         super.onResume();
 
@@ -47,6 +48,9 @@ public class FailureEquipmentListView extends AppCompatActivity {
     }
 
     public void backButtonTapped(View view){
+        MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
+        myHotelApp.saveRoomManagement();
+
         finish();
     }
 

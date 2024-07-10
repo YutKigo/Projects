@@ -22,6 +22,7 @@ public class RoomSetupView extends AppCompatActivity {
     private Button cleaningStartButton;
     private EditText failureEquipmentEditText;
     private EditText lostPropertyEditText;
+    private MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
 
 
     @Override
@@ -51,6 +52,8 @@ public class RoomSetupView extends AppCompatActivity {
         roomStatusDisplay = (TextView) findViewById(R.id.roomStatusDisplay);
         roomStatusDisplay.setText(room.getStatus());
     }
+
+
 
     public void checkedInButtonTapped(View view){
         checkedInButton = findViewById(R.id.checkedInButton);
@@ -143,6 +146,8 @@ public class RoomSetupView extends AppCompatActivity {
     }
 
     public void backButtonTapped(View view){
+        MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
+        myHotelApp.saveRoomManagement();
         finish();
     }
 }

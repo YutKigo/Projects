@@ -30,6 +30,8 @@ public class HousekeepingView extends AppCompatActivity {
     private CheckBox checkSHOWER;
     private EditText nameEditText;
 
+    private MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,8 @@ public class HousekeepingView extends AppCompatActivity {
 
 
     }
+
+
 
     public void cleaningStartButtonTapped(View view){
         /* 選択された部屋を取得・変数roomに格納 */
@@ -229,9 +233,6 @@ public class HousekeepingView extends AppCompatActivity {
         RoomManagement roomManagement = myHotelApp.getRoomManagement();
         Room room = roomManagement.getRoomInformation(selectedRoomNumber, selectedFloor);
 
-        /* 選択された部屋のステータスリセット */
-        room.changeStatus("Vacant");
-
         /* 清掃開始・終了時刻のテキスト表示リセット */
         room.setCleaningStartTime(" ");
         room.setCleaningFinishTime(" ");
@@ -274,6 +275,8 @@ public class HousekeepingView extends AppCompatActivity {
 
 
     public void backButtonTapped(View view){
+        MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
+        myHotelApp.saveRoomManagement();
         finish();
     }
 }
