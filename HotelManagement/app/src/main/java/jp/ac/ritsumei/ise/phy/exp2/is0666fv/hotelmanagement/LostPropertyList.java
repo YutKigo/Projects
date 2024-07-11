@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LostPropertyList extends AppCompatActivity {
 
     private TextView listTextView2;
+    private MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -19,6 +20,7 @@ public class LostPropertyList extends AppCompatActivity {
 
         listTextView2 = findViewById(R.id.listTextView2);
     }
+
 
 
 
@@ -39,15 +41,18 @@ public class LostPropertyList extends AppCompatActivity {
 
                 /* 忘れ物報告がnullでなければTextViewに表示 */
                 String reportText = "";
-                if(room.getLostProperty() != null){
-                    reportText = room.getLostProperty() + "\n";
+                if(room.getLostProperty() != null || room.getLostProperty() != ""){
+                    reportText = room.getLostProperty();
                     listTextView2.append(reportText);
+                    listTextView2.append("\n");
                 }
             }
         }
     }
 
     public void backButtonTapped(View view){
+        MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
+        myHotelApp.saveRoomManagement();
         finish();
     }
 }

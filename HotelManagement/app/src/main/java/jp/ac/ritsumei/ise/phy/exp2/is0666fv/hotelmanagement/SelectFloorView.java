@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SelectFloorView extends AppCompatActivity {
-
+    private MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +56,8 @@ public class SelectFloorView extends AppCompatActivity {
         startActivity(intent);
     }
     public void buckButtonTapped(View view){
+        MyHotelApplication myHotelApp = (MyHotelApplication) getApplication();
+        myHotelApp.saveRoomManagement();
         finish();
     }
 }

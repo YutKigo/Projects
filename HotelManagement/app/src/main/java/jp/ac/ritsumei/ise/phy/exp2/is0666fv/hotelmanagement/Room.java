@@ -21,14 +21,16 @@ public class Room implements Serializable {
     private boolean isCheckedBED = false; //BEDのCheckBoxがチェックされたかどうかを判定
     private boolean isCheckedSHOWER = false; //SHOWERのCheckBoxがチェックされたかどうかを判定
     private String stuffName; //EditTextに入力される清掃者の名前
-    private String failureEquipment; //EditTextに入力される設備不良報告
-    private String lostProperty; //EditTextに入力される忘れ物報告
+    private String failureEquipment = null; //EditTextに入力される設備不良報告
+    private String lostProperty = null; //EditTextに入力される忘れ物報告
 
     //Constructor
     Room(int roomNumber){
         this.roomNumber = roomNumber;
         this.status = "Vacant";
         this.cleaningStep = 0;
+        this.failureEquipment = null;
+        this.lostProperty = null;
     }
 
     /* 各フィールド変数のGETメソッド */
@@ -131,5 +133,20 @@ public class Room implements Serializable {
 
     public void setLostProperty(String lostProperty){
         this.lostProperty = lostProperty;
+    }
+
+    public void initialRoom(){
+        this.status = "Vacant";
+        this.stuffName = "";
+        this.cleaningStartTime = "";
+        this.cleaningFinishTime = "";
+        this.isCleaningStartButtonTapped = false; //CleaningStartButtonが押されたかどうかを判定
+        this.isCleaningFinishButtonTapped = false; //CleaningFinishButtonが押されたかどうかを判定
+        this.isInspectionStartButtonTapped = false; //InspectionStartButtonが押されたかどうかを判定
+        this.isInspectionFinishButtonTapped = true;
+        this.isCheckedBED = false; //BEDのCheckBoxがチェックされたかどうかを判定
+        this.isCheckedSHOWER = false;
+        this.lostProperty = null;
+        this.failureEquipment = null;
     }
 }

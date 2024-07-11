@@ -7,10 +7,14 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private MyHotelApplication myHotelApp;
+    private RoomManagement roomManagement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myHotelApp = (MyHotelApplication) getApplication();
     }
 
     //Menu:Room Management,
@@ -28,4 +32,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LostPropertyList.class);
         startActivity(intent);
     }
+
+    public void initialButtonTapped(View view){
+        myHotelApp.initialize();
+        myHotelApp.saveRoomManagement();
+    }
+
 }
